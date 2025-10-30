@@ -12,11 +12,11 @@ final class HomeController extends Controller
     public function index(): void
     {
         // Appelle le moteur de rendu avec la vue et ses paramètres
-        $this->render('home/index', [
+        $this->render('home/index', params: [
             // Définit le titre transmis à la vue
             'title' => 'Mini MVC',
+            'prenom' => 'Toto',
+            'prenom2' => 'Tata',
         ]);
     }
 }
-
-
