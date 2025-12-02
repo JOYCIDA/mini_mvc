@@ -1,0 +1,62 @@
+Category
+id : INT, clé primaire
+name : VARCHAR(150)
+description : TEXT
+image_url : VARCHAR(255)
+
+Product
+id : INT, clé primaire
+name : VARCHAR(150)
+description : TEXT
+price : DECIMAL(10,2)
+stock : INT
+image_url : VARCHAR(255)
+is_active : BOOLEAN
+created_at : DATETIME
+updated_at : DATETIME
+deleted_at : DATETIME (NULL)
+category_id : INT, clé étrangère vers Category(id)
+
+Customer
+id : INT, clé primaire
+first_name : VARCHAR(100)
+last_name : VARCHAR(100)
+email : VARCHAR(150), valeur unique
+password_hash : VARCHAR(255)
+phone : VARCHAR(20)
+address : VARCHAR(255)
+city : VARCHAR(100)
+postal_code : VARCHAR(20)
+created_at : DATETIME
+updated_at : DATETIME
+deleted_at : DATETIME (NULL)
+
+Orders
+id : INT, clé primaire
+order_number : VARCHAR(50), valeur unique
+customer_id : INT, clé étrangère vers Customer(id)
+status : ENUM('pending','paid','shipped','delivered','cancelled')
+total_amount : DECIMAL(10,2)
+shipping_address : VARCHAR(255)
+shipping_city : VARCHAR(100)
+shipping_postal_code : VARCHAR(20)
+created_at : DATETIM
+updated_at : DATETIME
+
+OrderLine
+id : INT, clé primaire
+order_id : INT, clé étrangère vers Orders(id)
+product_id : INT, clé étrangère vers Product(id)
+product_name : VARCHAR(150)
+unit_price : DECIMAL(10,2)
+quantity : INT
+line_total : DECIMAL(10,2)
+
+Admin
+id : INT, clé primaire
+username : VARCHAR(100), valeur unique
+email : VARCHAR(150), valeur unique
+password_hash : VARCHAR(255)
+role : ENUM('admin', 'super_admin')
+created_at : DATETIME
+updated_at : DATETIME
